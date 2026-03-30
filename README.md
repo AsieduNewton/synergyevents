@@ -65,7 +65,7 @@ Synergy Mobile App: Developing a companion app using Dart and Flutter for push n
 
 Clone the repository:
 
-git clone [https://github.com/YourUsername/synergy-events.git](https://github.com/YourUsername/synergy-events.git)
+git clone [https://github.com/YourUsername/synergy-events.git](https://github.com/AsieduNewton/synergyevents.git)
 
 
 Open locally:
