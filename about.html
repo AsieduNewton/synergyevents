@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About – Synergy Events</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root{--orange:#FF6B00;--amber:#FFAB00;--purple:#7B2FBE;--purple-light:#A855F7;--dark:#080808;--dark2:#111111;--dark3:#1A1A1A;--gray:#888;--light:#F5F5F0;--gradient:linear-gradient(135deg,var(--orange),var(--amber));--gradient2:linear-gradient(135deg,var(--purple),var(--purple-light));}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--dark);color:var(--light);font-family:'Montserrat',sans-serif;overflow-x:hidden;}
+  ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:var(--orange);}
+  nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 60px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:rgba(8,8,8,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,107,0,.15);}
+  .nav-logo{display:flex;align-items:center;gap:12px;}
+  .nav-logo img{height:44px;width:44px;object-fit:contain;}
+  .nav-brand{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .nav-links{display:flex;gap:40px;list-style:none;}
+  .nav-links a{color:rgba(245,245,240,.7);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:color .3s;position:relative;}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--gradient);transition:width .3s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--light);}
+  .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+  .nav-cta{background:var(--gradient);color:#000;padding:10px 28px;border-radius:2px;font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;}
+  section{padding:120px 60px;}
+  .section-tag{font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+  .section-tag::before{content:'';width:30px;height:2px;background:var(--gradient);}
+  .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:2px;margin-bottom:20px;}
+  .section-desc{color:rgba(245,245,240,.55);line-height:1.8;font-size:.95rem;max-width:540px;}
+  .gradient-text{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .btn-primary{background:var(--gradient);color:#000;padding:16px 40px;border-radius:2px;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:all .3s;}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 40px rgba(255,107,0,.3);}
+  .btn-ghost{color:var(--light);padding:16px 40px;border:1px solid rgba(245,245,240,.2);border-radius:2px;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:all .3s;}
+  .btn-ghost:hover{border-color:var(--orange);color:var(--orange);}
+  .fade-up{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.16,1,.3,1);}
+  .fade-up.visible{opacity:1;transform:translateY(0);}
+
+  /* PAGE HERO */
+  .page-hero{height:70vh;position:relative;display:flex;align-items:flex-end;padding:80px 60px;overflow:hidden;}
+  .page-hero-img{position:absolute;inset:0;}
+  .page-hero-img img{width:100%;height:100%;object-fit:cover;opacity:.3;}
+  .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--dark) 30%,transparent);}
+  .page-hero-content{position:relative;z-index:2;}
+  .page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,8rem);line-height:.9;letter-spacing:2px;}
+  .page-breadcrumb{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:16px;}
+  .page-breadcrumb a{color:var(--orange);text-decoration:none;}
+
+  /* STORY */
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+  .story-text p{color:rgba(245,245,240,.65);line-height:1.9;font-size:.95rem;margin-bottom:20px;}
+  .story-quote{border-left:4px solid var(--orange);padding:20px 30px;margin:30px 0;background:var(--dark3);}
+  .story-quote p{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--light);line-height:1.6;}
+  .story-img-stack{position:relative;height:500px;}
+  .story-img1{position:absolute;top:0;right:0;width:80%;height:360px;object-fit:cover;}
+  .story-img2{position:absolute;bottom:0;left:0;width:60%;height:260px;object-fit:cover;border:6px solid var(--dark);}
+  .story-accent{position:absolute;bottom:40px;right:40px;width:80px;height:80px;background:var(--gradient);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;}
+
+  /* VALUES */
+  .values-section{background:var(--dark2);}
+  .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:60px;}
+  .value-card{background:var(--dark3);padding:40px 32px;text-align:center;position:relative;overflow:hidden;}
+  .value-card::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:3px;background:var(--gradient);transition:width .4s;}
+  .value-card:hover::after{width:80%;}
+  .value-icon{font-size:2.5rem;margin-bottom:20px;display:block;}
+  .value-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;margin-bottom:12px;}
+  .value-desc{font-size:.82rem;color:var(--gray);line-height:1.7;}
+
+  /* TEAM */
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:60px;}
+  .team-card{position:relative;overflow:hidden;background:var(--dark3);}
+  .team-img{width:100%;height:320px;object-fit:cover;object-position:top;transition:transform .5s;}
+  .team-card:hover .team-img{transform:scale(1.05);}
+  .team-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 40%,transparent);}
+  .team-info{position:absolute;bottom:0;left:0;right:0;padding:24px;transform:translateY(20px);transition:transform .4s;}
+  .team-card:hover .team-info{transform:translateY(0);}
+  .team-name{font-weight:700;font-size:.95rem;margin-bottom:4px;}
+  .team-role{font-size:.72rem;color:var(--orange);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+  .team-social{display:flex;gap:8px;opacity:0;transition:opacity .4s .1s;}
+  .team-card:hover .team-social{opacity:1;}
+  .team-social a{width:32px;height:32px;background:rgba(255,107,0,.2);border:1px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:.72rem;text-decoration:none;transition:all .3s;}
+  .team-social a:hover{background:var(--orange);color:#000;}
+
+  /* MILESTONES */
+  .timeline{margin-top:60px;position:relative;}
+  .timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--dark3);transform:translateX(-50%);}
+  .timeline-item{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:60px;align-items:center;}
+  .timeline-item:nth-child(even) .timeline-content{grid-column:2;grid-row:1;}
+  .timeline-item:nth-child(even) .timeline-year{grid-column:1;grid-row:1;text-align:right;}
+  .timeline-content{background:var(--dark3);padding:32px;border-top:3px solid var(--orange);}
+  .timeline-content h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;margin-bottom:10px;}
+  .timeline-content p{font-size:.85rem;color:var(--gray);line-height:1.7;}
+  .timeline-year{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(255,107,0,.15);display:flex;align-items:center;padding:20px;}
+  .timeline-dot{position:absolute;left:50%;width:16px;height:16px;background:var(--orange);border-radius:50%;transform:translateX(-50%);margin-top:32px;box-shadow:0 0 20px rgba(255,107,0,.5);}
+
+  /* STATS */
+  .stats-bar{background:var(--gradient);padding:60px;}
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center;}
+  .stat-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:#000;line-height:1;}
+  .stat-label{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(0,0,0,.6);}
+
+  /* FOOTER */
+  footer{background:#050505;padding:60px;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:30px;border-top:1px solid rgba(245,245,240,.06);}
+  .footer-copy{color:var(--gray);font-size:.78rem;}
+
+  @media(max-width:900px){
+    nav{padding:16px 24px;}
+    .nav-links,.nav-cta{display:none;}
+    section{padding:80px 24px;}
+    .page-hero{padding:80px 24px;height:50vh;}
+    .story-grid,.values-grid{grid-template-columns:1fr;}
+    .team-grid{grid-template-columns:1fr 1fr;}
+    .timeline::before{display:none;}
+    .timeline-item{grid-template-columns:1fr;}
+    .stats-row{grid-template-columns:1fr 1fr;}
+    .stats-bar{padding:40px 24px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">
+    <img src="Synergy_events_logo_.jpg-removebg-preview.png" alt="Logo"/>
+    <span class="nav-brand">Synergy Events</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services.html">Our Services</a></li>
+    <li><a href="memories.html">Memories</a></li>
+  </ul>
+  <a href="services.html#tickets" class="nav-cta">Book Tickets</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-img"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600" alt="Events"/></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="page-breadcrumb"><a href="index.html">Home</a> / About</div>
+    <h1>About <span class="gradient-text">Synergy</span><br/>Events</h1>
+  </div>
+</div>
+
+<!-- STORY -->
+<section>
+  <div class="story-grid">
+    <div class="story-text fade-up">
+      <div class="section-tag">Our Story</div>
+      <h2 class="section-title">Born From a <span class="gradient-text">Passion</span> for Extraordinary Moments</h2>
+      <p>Synergy Events was founded with a simple but powerful belief: every event has the potential to be extraordinary. We set out to bridge the gap between vision and execution — combining creativity, logistics, and technology to deliver world-class events across Ghana and beyond.</p>
+      <p>Our journey began with small corporate gatherings and quickly grew into managing some of Ghana's most prestigious conferences, galas, product launches, and entertainment events. Today, we are trusted by hundreds of clients to bring their visions to life.</p>
+      <div class="story-quote">
+        <p>"We don't just plan events. We craft experiences that move people, spark ideas, and create memories that last a lifetime."</p>
+      </div>
+      <a href="services.html" class="btn-primary">Explore Our Services</a>
+    </div>
+    <div class="fade-up" style="position:relative;">
+      <div class="story-img-stack">
+        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=700" class="story-img1" alt="Event"/>
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500" class="story-img2" alt="Event"/>
+        <div class="story-accent">✦</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-row">
+    <div><div class="stat-num">200+</div><div class="stat-label">Events Executed</div></div>
+    <div><div class="stat-num">50K+</div><div class="stat-label">Attendees Served</div></div>
+    <div><div class="stat-num">98%</div><div class="stat-label">Client Satisfaction</div></div>
+    <div><div class="stat-num">5+</div><div class="stat-label">Years of Excellence</div></div>
+  </div>
+</div>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div style="text-align:center;">
+    <div class="section-tag" style="justify-content:center;">What Drives Us</div>
+    <h2 class="section-title">Our Core <span class="gradient-text">Values</span></h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card fade-up">
+      <span class="value-icon">🎯</span>
+      <div class="value-title">Precision</div>
+      <p class="value-desc">Every detail matters. We operate with military precision so your event runs flawlessly from start to finish.</p>
+    </div>
+    <div class="value-card fade-up">
+      <span class="value-icon">💡</span>
+      <div class="value-title">Innovation</div>
+      <p class="value-desc">We bring fresh ideas and modern solutions to every event, keeping your brand ahead of the curve.</p>
+    </div>
+    <div class="value-card fade-up">
+      <span class="value-icon">🤝</span>
+      <div class="value-title">Partnership</div>
+      <p class="value-desc">We treat every client as a long-term partner, investing in your success as if it were our own.</p>
+    </div>
+    <div class="value-card fade-up">
+      <span class="value-icon">⭐</span>
+      <div class="value-title">Excellence</div>
+      <p class="value-desc">We never settle for good enough. Our standard is world-class, every single time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section>
+  <div style="text-align:center;">
+    <div class="section-tag" style="justify-content:center;">The People Behind</div>
+    <h2 class="section-title">Meet Our <span class="gradient-text">Team</span></h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card fade-up">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400" class="team-img" alt="Team"/>
+      <div class="team-overlay"></div>
+      <div class="team-info">
+        <div class="team-name">Kofi Mensah</div>
+        <div class="team-role">Founder & CEO</div>
+        <div class="team-social"><a href="#">f</a><a href="#">in</a><a href="#">tw</a></div>
+      </div>
+    </div>
+    <div class="team-card fade-up">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400" class="team-img" alt="Team"/>
+      <div class="team-overlay"></div>
+      <div class="team-info">
+        <div class="team-name">Abena Owusu</div>
+        <div class="team-role">Creative Director</div>
+        <div class="team-social"><a href="#">f</a><a href="#">in</a><a href="#">tw</a></div>
+      </div>
+    </div>
+    <div class="team-card fade-up">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" class="team-img" alt="Team"/>
+      <div class="team-overlay"></div>
+      <div class="team-info">
+        <div class="team-name">Kweku Darko</div>
+        <div class="team-role">Head of Operations</div>
+        <div class="team-social"><a href="#">f</a><a href="#">in</a><a href="#">tw</a></div>
+      </div>
+    </div>
+    <div class="team-card fade-up">
+      <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400" class="team-img" alt="Team"/>
+      <div class="team-overlay"></div>
+      <div class="team-info">
+        <div class="team-name">Esi Agyemang</div>
+        <div class="team-role">Marketing Lead</div>
+        <div class="team-social"><a href="#">f</a><a href="#">in</a><a href="#">tw</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MILESTONES -->
+<section style="background:var(--dark2);">
+  <div style="text-align:center;">
+    <div class="section-tag" style="justify-content:center;">Our Journey</div>
+    <h2 class="section-title">Key <span class="gradient-text">Milestones</span></h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2020</div>
+      <div class="timeline-content">
+        <h3>Company Founded</h3>
+        <p>Synergy Events was established in Accra, Ghana, with a mission to redefine corporate event management in West Africa.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h3>First Major Conference</h3>
+        <p>Successfully managed the Ghana Business Innovation Summit with 1,000+ attendees — our breakthrough moment.</p>
+      </div>
+      <div class="timeline-year">2021</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2022</div>
+      <div class="timeline-content">
+        <h3>Ticketing Platform Launch</h3>
+        <p>Launched our proprietary digital ticketing and seat reservation system, revolutionizing event access in Ghana.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h3>100 Events Milestone</h3>
+        <p>Crossed 100 successfully executed events and served over 30,000 attendees across Ghana.</p>
+      </div>
+      <div class="timeline-year">2023</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2024</div>
+      <div class="timeline-content">
+        <h3>Regional Expansion</h3>
+        <p>Extended operations to Kumasi and Takoradi, cementing our position as Ghana's #1 event management company.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Synergy Events. All Rights Reserved.</span>
+    <div style="display:flex;gap:24px;">
+      <a href="index.html" style="color:var(--gray);text-decoration:none;font-size:.78rem;">Home</a>
+      <a href="services.html" style="color:var(--gray);text-decoration:none;font-size:.78rem;">Services</a>
+      <a href="memories.html" style="color:var(--gray);text-decoration:none;font-size:.78rem;">Memories</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer=new IntersectionObserver((e)=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible');});},{threshold:.15});
+  document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
